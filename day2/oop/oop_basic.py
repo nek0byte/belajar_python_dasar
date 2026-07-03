@@ -15,7 +15,8 @@ class Human:
     def __init__(self, name, age):
         self.name = name
         self.age = age
-
+    
+    # ini method
     def myfunc(self):
         print("Hello my name is " + self.name)
 
@@ -24,6 +25,7 @@ h1.myfunc()
 
 # encapsulation
 class Rekening:
+    # pake "__" biar tidak bisa diakses dari luar
     def __init__(self, saldo):
         self.__saldo = saldo
 
@@ -40,7 +42,8 @@ class Kendaraan:
 
     def berjalan(self):
         print(self.nama + " sedang berjalan")
-        
+       
+# kelas mobil mewarisi kelas kendaraan
 class Mobil(Kendaraan):
     def meong(self):
         print(self.nama + " sedang mengeong")
@@ -61,6 +64,7 @@ class Orang:
     def __init__(self, nama):
         self.nama = nama
 
+    # overloading
     def makan(self):
         print(self.nama + " sedang makan")
 
@@ -71,6 +75,7 @@ for hewan in (panda, orang):
     hewan.makan()
 
 # abstraction
+# pake "ABC" untuk membuat abstract class
 from abc import ABC, abstractmethod
 
 class Vehicle(ABC):
