@@ -1,3 +1,42 @@
+'''
+=== Mini ToDo List ===
+-> Fitur Utama
+1. Menambah task
+2. Melihat task
+3. Mengubah status task
+4. Menghapus task
+
+-> Semua task disimpan di list
+kenapa list? karena list bisa diubah
+
+-> Semua task direpresentasikan menggunakan dictionary
+kenapa dictionary? karena data task punya format yang tetap
+namun memiliki value yang beda beda
+
+-> Fungsi tambah
+1. meminta user input untuk task
+2. membuat dictionary baru
+3. memberikan ID otomatis berdasarkan jumlah task
+4. menambah task ke list
+5. menampilkan pesan berhasil
+6. menampilkan daftar task
+
+-> Fungsi lihat
+1. mengecek apakah list kosong
+2. jika kosong maka tampilkan pesan "kosong"
+3. jika tidak kosong maka tampilkan daftar task
+
+-> Fungsi update status
+1. menampilkan daftar task
+2. meminta user input untuk ID task
+3. cari ID lalu ubah status
+
+-> Fungsi hapus
+1. menampilkan daftar task
+2. meminta user input untuk ID task
+3. cari ID lalu hapus
+'''
+
 tasks = []
 
 def tambah_task():
@@ -10,7 +49,10 @@ def tambah_task():
     }
 
     tasks.append(task)
+    print('=============================')
     print("Task berhasil ditambahkan!")
+    print('=============================')
+    lihat_task()
 
 
 def lihat_task():
@@ -18,7 +60,7 @@ def lihat_task():
         print("Belum ada task.")
         return
 
-    print("\nDaftar Task:")
+    print("Daftar Task:")
 
     for task in tasks:
         status = "Selesai" if task["selesai"] else "Belum selesai"
