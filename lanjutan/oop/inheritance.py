@@ -32,7 +32,9 @@ mobil.stop()
 # ========================================
 # Multi inheritance
 """
-sebuah class bisa mewarisi lebih dari 1 class induk
+multi inheritance = ebuah class bisa mewarisi lebih dari 1 class induk
+- kapan menggunakan multi inheritance? saat objek" adalah benar" turunan dari kedua class
+- hindari multi inheritancce ketika hanya butuh 1 fitur saja dalam class lain
 """
 
 
@@ -48,11 +50,17 @@ class Petarung:
 
 # class dengan multi inheritance
 class Player(Penyihir, Petarung):
-    def gunakan_skill_multi(self) -> None:
+    def gunakan_skill_multi(self) -> None:  # method baru
         print("kombinasi serangan!!!")
-        self.lempar_spell()
-        self.serang()
+        self.lempar_spell()  # method dari class Penyihir
+        self.serang()  # method dari class Petarung
+        """
+        - method dari class Penyihir akan lebih dulu diproses lalu method dari class Petarung
+        - python secara otomatis mencari method yg terlebih dulu dieksekusi
+        dengan hirarki dari class (Method Resolution Order)
+        """
 
 
 hero1 = Player()
 hero1.gunakan_skill_multi()
+print(Player.__mro__)  # cek MRO
