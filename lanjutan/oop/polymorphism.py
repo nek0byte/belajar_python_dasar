@@ -35,7 +35,8 @@ class TransferBank:
 
 # method Polymorphism
 def proses_bayar(metode: MetodePembayaran, jumlah: float) -> None:
-    # fungsi proses_bayar tidak peduli objek apa yang dikirim, selama objek tersebut memiliki metode bayar
+    # fungsi proses_bayar tidak peduli objek apa yang dikirim,
+    # selama objek tersebut memiliki metode bayar
     metode.bayar(jumlah)
 
 
@@ -49,6 +50,24 @@ proses_bayar(transfer, 150_000)
 
 # ============================================
 # Operator Overloading
+"""
+- Operator Overloading = memberikan perilaku khusus pada operator saat digunakan
+pada objek dari class yang dibuat
+- Dilakukan dengan mengimplementasikan magic method (dunder method)
+
+Magic method yang umum:
+- __add__() = penjumlahan
+- __sub__() = pengurangan
+- __mul__() = perkalian
+_ __eq__()  = sama dengan
+- __gt__()  = lebih besar dari
+- __lt__()  = lebih kecil dari
+- __str__() = ngeprint objek
+
+Intinya Operator overloading membuat objek dapat menggunakan operator
+bawaan python dengan perilaku yang kita
+tentukan sendir
+"""
 
 
 class Toko:
