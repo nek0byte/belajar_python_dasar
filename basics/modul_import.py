@@ -6,11 +6,8 @@ print(p)
 
 print(pow(2, 3))
 
-
+# import fungsi dari file loop_func
 from loop_func import fac, my_function4
 
 print(fac(5))
-print(my_function4(fname = "Tobias", lname = "Refsnes"))
-
-
-
+print(my_function4(fname="Tobias", lname="Refsnes"))
