@@ -278,4 +278,4 @@ if RekeningBank.validasi_saldo(saldo_awal):
     bunga = RekeningBank.hitung_bunga(rekening1.saldo, 3)
 
     print("Bunga 3 tahun:", RekeningBank.format_rupiah(bunga))
-    print("===========================================")
+print("===========================================")

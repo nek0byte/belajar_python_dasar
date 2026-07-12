@@ -98,5 +98,97 @@ toko_buku = Toko(
     ],
 )
 
+print("=====================================")
 toko_baru = toko_elektronik + toko_buku
 print(toko_baru)
+
+# ==============================================
+# Methode Overriding
+"""
+subclass mengganti implementasi method dari superclass
+"""
+
+
+# superclass/parent-class
+class Hewan:
+    def suara(self):
+        print("Suara hewan")
+
+
+# subclass/child-class
+class Kucing:
+    def suara(self):
+        print("Meong")
+
+
+class Anjing(Hewan):
+    def suara(self):
+        print("Guk guk")
+
+
+hewan = [Kucing(), Anjing()]
+print("=====================================")
+for h in hewan:
+    h.suara()
+
+# ========================================
+# Dynamic Binding
+"""
+Dynamic binding = menentukan metode yang akan dipanggil saat
+program dijalankan (runtime) bukan saat kode dikompilasi
+"""
+
+
+# SistemAlarm bertipe/berperan sebagai Protocol/blueprint
+# Protocol memberi tau:
+# "apapun yang dipasang sebagai alarm harus memiliki method aktif()"
+class SistemAlarm(Protocol):
+    def aktif(self) -> None: ...
+
+
+class AlarmDefault:
+    def aktif(self) -> None:
+        print("bunyi sirine")
+
+
+class AlarmPintar:
+    def aktif(self) -> None:
+        print("kirim notif ke hp")
+
+
+class AlarmPihakBerwajib:
+    def aktif(self) -> None:
+        print("memanggil pihak berwajib")
+
+
+class SmartHome:
+    def __init__(self, owner: str) -> None:
+        self.owner: str = owner
+        # jenis" alarm akan disimpan di dalam list
+        self.alarm_terpasang: list[SistemAlarm] = []
+
+    def pasang_alarm(self, alarm: SistemAlarm) -> None:
+        # ketika objek memanggil method pasang_alarm,
+        # alarm yang dipilih akan dimasukkan ke dalam list
+        self.alarm_terpasang.append(alarm)
+
+    # aktifkan alarm tanpa tau jenisnya
+    def picu_alarm(self) -> None:
+        print(f"rumah {self.owner} dalam bahaya")
+
+        # karena alarm bertipe SistemAlarm,
+        # python hanya tau: objek ini seharusny memiliki method aktif()
+        # python belum tau apakah objeknya: AlarmDefault, AlarmPintar, atau AlarmPihakBerwajib
+        # belum ada keputusan method mana yang akan diambil
+        for alarm in self.alarm_terpasang:
+            alarm.aktif()
+
+
+print("==============================")
+rumahA = SmartHome("Rumah A")
+
+rumahA.pasang_alarm(AlarmDefault())
+rumahA.pasang_alarm(AlarmPintar())
+rumahA.pasang_alarm(AlarmPihakBerwajib())
+
+rumahA.picu_alarm()
