@@ -5,7 +5,6 @@ menampilkan hal" yang penting(intreface) kepada pengguna
 """
 
 from abc import ABC, abstractmethod
-import re
 
 
 class Pembayaran(ABC):

@@ -7,8 +7,7 @@ agar data tetap aman dan hanya bisa dibubah melalui
 cara yang gtelah ditentukan oleh class.
 """
 
-from datetime import date, datetime
-from enum import Flag
+from datetime import datetime
 from typing import Optional
 
 
