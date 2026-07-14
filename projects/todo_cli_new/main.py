@@ -1,7 +1,7 @@
 import task_manager
 
-def tampilkan_menu():
 
+def tampilkan_menu():
     print("""
 ====================
       TODO APP
@@ -14,7 +14,6 @@ def tampilkan_menu():
 5. Tandai Selesai
 6. Hapus Task
 7. Keluar
-
 """)
 
 
@@ -24,10 +23,12 @@ def main():
         pilihan = input("Pilih menu: ")
 
         if pilihan == "1":
-            judul = input("Nama task: ")
+            judul = input("Nama task: ").strip()
+            if not judul:
+                print("Nama task tidak boleh kosong")
+                continue
             task_manager.tambah_task(judul)
             print("Task berhasil ditambahkan")
-            task_manager.lihat_task()
 
         elif pilihan == "2":
             tasks = task_manager.lihat_task()
@@ -38,56 +39,59 @@ def main():
                     print(task)
 
         elif pilihan == "3":
-            keyword = input("Cari: ")
+            keyword = input("Cari: ").strip()
+            if not keyword:
+                print("Masukkan kata kunci")
+                continue
             hasil = task_manager.cari_task(keyword)
-            for task in hasil:
-                print(task)
+            if not hasil:
+                print("Task tidak ditemukan")
+            else:
+                for task in hasil:
+                    print(task)
 
         elif pilihan == "4":
-            id_task = int(
-                input("ID task: ")
-            )
-
-            judul = input(
-                "Judul baru: "
-            )
-
-            berhasil = task_manager.edit_task(
-                id_task,
-                judul
-            )
-
-            print(
-                "Berhasil"
-                if berhasil
-                else "Task tidak ditemukan"
-            )
+            tasks = task_manager.lihat_task()
+            if not tasks:
+                print("Belum ada task")
+                continue
+            try:
+                id_task = int(input("ID task: "))
+            except ValueError:
+                print("ID harus berupa angka")
+                continue
+            judul = input("Judul baru: ").strip()
+            if not judul:
+                print("Judul tidak boleh kosong")
+                continue
+            berhasil = task_manager.edit_task(id_task, judul)
+            print("Berhasil" if berhasil else "Task tidak ditemukan")
 
         elif pilihan == "5":
-            id_task = int(
-                input("ID task selesai: ")
-            )
-            berhasil = task_manager.selesai_task(
-                id_task
-            )
-            print(
-                "Berhasil"
-                if berhasil
-                else "Task tidak ditemukan"
-            )
+            tasks = task_manager.lihat_task()
+            if not tasks:
+                print("Belum ada task")
+                continue
+            try:
+                id_task = int(input("ID task selesai: "))
+            except ValueError:
+                print("ID harus berupa angka")
+                continue
+            berhasil = task_manager.selesai_task(id_task)
+            print("Berhasil" if berhasil else "Task tidak ditemukan")
 
         elif pilihan == "6":
-            id_task = int(
-                input("ID task hapus: ")
-            )
-            berhasil = task_manager.hapus_task(
-                id_task
-            )
-            print(
-                "Berhasil"
-                if berhasil
-                else "Task tidak ditemukan"
-            )
+            tasks = task_manager.lihat_task()
+            if not tasks:
+                print("Belum ada task")
+                continue
+            try:
+                id_task = int(input("ID task hapus: "))
+            except ValueError:
+                print("ID harus berupa angka")
+                continue
+            berhasil = task_manager.hapus_task(id_task)
+            print("Berhasil" if berhasil else "Task tidak ditemukan")
 
         elif pilihan == "7":
             print("Sampai jumpa!")
@@ -98,4 +102,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nProgram dihentikan pengguna")
