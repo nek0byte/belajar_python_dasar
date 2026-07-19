@@ -1,4 +1,4 @@
-# Asset Management — CLI MVC
+# Asset Management
 
 Aplikasi CLI untuk mengelola aset perusahaan: **Kendaraan**, **Elektronik**,
 dan **Tanah Bangunan**. Dibangun dengan arsitektur **MVC** (Model-View-Controller).
